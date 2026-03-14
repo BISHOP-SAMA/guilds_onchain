@@ -1,0 +1,19 @@
+packages:
+  "framer-motion": "For cinematic page transitions and high-quality entry animations"
+  "react-hook-form": "For robust form state management"
+  "@hookform/resolvers": "For Zod schema validation integration"
+  "zod": "For form validation schemas"
+  "clsx": "For conditional class name merging"
+  "tailwind-merge": "For merging tailwind classes safely"
+
+images:
+  - path: "artifacts/guilds-platform/public/images/logo-crest.png"
+    description: "Intricate golden medieval shield crest with dark gothic elements, high fantasy style, glowing embers, cinematic lighting, 3d render"
+    aspect_ratio: "1:1"
+  - path: "artifacts/guilds-platform/public/images/magical-flare.png"
+    description: "Abstract dark red and gold magical embers and sparks floating in the air, dark fantasy battle atmosphere, cinematic lighting"
+    aspect_ratio: "16:9"
+
+notes:
+  - "App is purely dark-mode, gothic medieval fantasy styled."
+  - "Using provided background images bg-home.jpeg and bg-form.jpeg from public directory."

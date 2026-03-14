@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Guilds Onchain Platform API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: guilds
+    description: Guild operations
+  - name: members
+    description: Member operations
+  - name: registrations
+    description: Registration operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /guilds:
+    get:
+      operationId: listGuilds
+      tags: [guilds]
+      summary: List all guilds
+      responses:
+        "200":
+          description: List of guilds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Guild"
+    post:
+      operationId: registerGuild
+      tags: [registrations]
+      summary: Register a new guild
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterGuildRequest"
+      responses:
+        "201":
+          description: Guild registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Guild"
+  /guilds/{id}:
+    get:
+      operationId: getGuild
+      tags: [guilds]
+      summary: Get guild by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Guild details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Guild"
+  /members:
+    post:
+      operationId: registerMember
+      tags: [registrations]
+      summary: Register as a guild member
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterMemberRequest"
+      responses:
+        "201":
+          description: Member registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Member"
+  /leaderboard:
+    get:
+      operationId: getLeaderboard
+      tags: [guilds]
+      summary: Get global guild leaderboard
+      responses:
+        "200":
+          description: Guild leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    Guild:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        collectionAddress:
+          type: string
+        memberCount:
+          type: integer
+        strength:
+          type: integer
+        rank:
+          type: integer
+        ownerWallet:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - name
+        - collectionAddress
+        - memberCount
+        - strength
+        - rank
+        - ownerWallet
+        - createdAt
+    RegisterGuildRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        collectionAddress:
+          type: string
+        ownerWallet:
+          type: string
+        collectionName:
+          type: string
+        website:
+          type: string
+        twitter:
+          type: string
+        discord:
+          type: string
+      required:
+        - name
+        - collectionAddress
+        - ownerWallet
+    RegisterMemberRequest:
+      type: object
+      properties:
+        walletAddress:
+          type: string
+        discordHandle:
+          type: string
+        twitterHandle:
+          type: string
+        referralCode:
+          type: string
+      required:
+        - walletAddress
+    Member:
+      type: object
+      properties:
+        id:
+          type: integer
+        walletAddress:
+          type: string
+        discordHandle:
+          type: string
+        twitterHandle:
+          type: string
+        guildId:
+          type: integer
+        role:
+          type: string
+          enum: [citizen, military, president]
+        points:
+          type: integer
+        createdAt:
+          type: string
+      required:
+        - id
+        - walletAddress
+        - role
+        - points
+        - createdAt
+    LeaderboardEntry:
+      type: object
+      properties:
+        rank:
+          type: integer
+        guildId:
+          type: integer
+        guildName:
+          type: string
+        memberCount:
+          type: integer
+        strength:
+          type: integer
+        weeklyPoints:
+          type: integer
+      required:
+        - rank
+        - guildId
+        - guildName
+        - memberCount
+        - strength
+        - weeklyPoints

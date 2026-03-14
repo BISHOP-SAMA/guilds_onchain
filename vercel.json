@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @workspace/api-spec run codegen && BASE_PATH=/ PORT=3000 pnpm --filter @workspace/guilds-platform run build",
+  "outputDirectory": "artifacts/guilds-platform/dist/public",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
