@@ -1,2 +1,2 @@
-export * from "./guilds";
+export * from "./guild";
 export * from "./members";
