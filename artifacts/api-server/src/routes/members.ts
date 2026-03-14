@@ -1,4 +1,5 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
+const router = Router();
 import { db, membersTable, guildsTable } from "@workspace/db";
 import { RegisterMemberBody } from "@workspace/api-zod";
 import { eq, sql } from "drizzle-orm";
