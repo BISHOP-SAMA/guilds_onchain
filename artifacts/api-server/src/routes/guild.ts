@@ -1,9 +1,9 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 import { db, guildsTable, membersTable } from "@workspace/db";
 import { RegisterGuildBody, GetGuildParams } from "@workspace/api-zod";
 import { eq, desc } from "drizzle-orm";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.get("/guilds", async (_req, res) => {
   try {
