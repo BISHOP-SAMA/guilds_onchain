@@ -1,7 +1,7 @@
 import { pgTable, text, serial, integer, timestamp, pgEnum } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod/v4";
-import { guildsTable } from "./guilds";
+import { guildsTable } from "./guild";
 
 export const memberRoleEnum = pgEnum("member_role", ["citizen", "military", "president"]);
 
