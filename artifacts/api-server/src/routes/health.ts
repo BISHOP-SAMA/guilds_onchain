@@ -4,7 +4,8 @@ import { HealthStatus } from "@workspace/api-zod";
 
 const router = Router();
 
-router.get("/healthz", (_req: Request, res: Response) => {
+// Change "/healthz" to "/"
+router.get("/", (_req: Request, res: Response) => {
   const data: HealthStatus = { status: "ok" };
   res.json(data);
 });
