@@ -5,8 +5,9 @@ import membersRouter from "./members.js";
 
 const router = Router();
 
-router.use(healthRouter);
-router.use(guildsRouter);
-router.use(membersRouter);
+// Now each file has its own "department"
+router.use("/health", healthRouter);
+router.use("/guild", guildsRouter);
+router.use("/members", membersRouter);
 
 export default router;
