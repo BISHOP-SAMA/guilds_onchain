@@ -2,7 +2,7 @@
   "$schema": "https://schema.railway.com/railway-schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/api-spec run codegen && pnpm --filter @workspace/api-server run build"
+    "buildCommand": "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/api-spec run codegen && pnpm --filter @workspace/api-server run build && pnpm --filter @workspace/guilds-platform run build"
   },
   "deploy": {
     "startCommand": "node artifacts/api-server/dist/index.cjs",
