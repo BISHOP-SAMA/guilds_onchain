@@ -29,7 +29,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
-  /guilds:
+
+  # --- Guild Department (Starts with /guild) ---
+  /guild:
     get:
       operationId: listGuilds
       tags: [guilds]
@@ -60,7 +62,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Guild"
-  /guilds/{id}:
+
+  /guild/{id}:
     get:
       operationId: getGuild
       tags: [guilds]
@@ -78,6 +81,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Guild"
+
+  /guild/leaderboard:
+    get:
+      operationId: getLeaderboard
+      tags: [guilds]
+      summary: Get global guild leaderboard
+      responses:
+        "200":
+          description: Guild leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+
+  # --- Member Department ---
   /members:
     post:
       operationId: registerMember
@@ -96,20 +116,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Member"
-  /leaderboard:
-    get:
-      operationId: getLeaderboard
-      tags: [guilds]
-      summary: Get global guild leaderboard
-      responses:
-        "200":
-          description: Guild leaderboard
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/LeaderboardEntry"
+
 components:
   schemas:
     HealthStatus:
