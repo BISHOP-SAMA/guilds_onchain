@@ -6,7 +6,7 @@ import { eq, sql } from "drizzle-orm";
 // Only define 'router' ONCE
 const router: IRouter = Router();
 
-router.post("/members", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const body = RegisterMemberBody.parse(req.body);
 
